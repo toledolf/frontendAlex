@@ -2,13 +2,12 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  height: 50px;
-  padding: 10px;
+  height: 40px;
   margin: 0 auto;
   border: 1px solid #000;
   border-radius: 5px;
   box-shadow: 10px 5px 5px rgb(69, 68, 68);
-  width: 50%;
+  width: 100%;
 }
 
 .barra svg {
@@ -25,7 +24,7 @@
   outline: none;
   width: 100%;
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .resultado {
@@ -38,7 +37,7 @@
   position: absolute;
   list-style: none;
   padding: 0;
-  width: 39.5%;
+  width: 50%;
   border-radius: 10px;
 }
 

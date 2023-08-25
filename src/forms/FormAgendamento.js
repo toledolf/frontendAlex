@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Form, Row, Col, Button, Container } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
+import { urlBase, urlBase2 } from "../utilitarios/definicoes";
+import BarraBusca from "./BarraBusca.js";
 
 function FormAgendamento(props) {
   const [validado, setValidado] = useState(false);
@@ -50,6 +51,17 @@ function FormAgendamento(props) {
     evento.stopPropagation();
   }
 
+  const [clienteSelecionado, setClienteSelecionado] = useState({});
+  const [ListaUsuarios, setListaUsuarios] = useState([]);
+
+  useEffect(() => {
+    fetch(urlBase2)
+      .then((resposta) => resposta.json())
+      .then((dados) => {
+        setListaUsuarios(dados);
+      });
+  }, []);
+
   return (
     <Form
       noValidate
@@ -59,6 +71,24 @@ function FormAgendamento(props) {
       <Container className="mt-4 mb-4 d-flex justify-content-center">
         <h1>Agendar Espaço no Sistema</h1>
       </Container>
+      <Row>
+        <Col>
+          <Form.Group className="mb-3">
+            <Form.Label>Usuário:</Form.Label>
+            <BarraBusca
+              placeHolder={"Informe um Usuário"}
+              dados={ListaUsuarios}
+              campoChave={"cpf"}
+              campoBusca={"nome"}
+              funcaoSelecao={setClienteSelecionado}
+              valor={""}
+            />
+            <Form.Control.Feedback type="invalid">
+              Por favor, insira o Usuário!
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Col>
+      </Row>
       <Row>
         <Col>
           <Form.Group className="mb-3">
@@ -123,23 +153,6 @@ function FormAgendamento(props) {
           <Form.Control.Feedback type="invalid">
             Por favor, informe um Horário!
           </Form.Control.Feedback>
-        </Col>
-        <Col>
-          <Form.Group className="mb-3">
-            <Form.Label>Usuário:</Form.Label>
-            <Form.Control
-              disabled
-              type="text"
-              placeholder="Será recuperado via Barra de Busca."
-              value={agendamento.usuario}
-              id="usuario"
-              onChange={manipularInput}
-              required
-            />
-            <Form.Control.Feedback type="invalid">
-              Por favor, insira o Usuário!
-            </Form.Control.Feedback>
-          </Form.Group>
         </Col>
 
         <Row>

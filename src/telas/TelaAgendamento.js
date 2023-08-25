@@ -51,17 +51,6 @@ function TelaAgendamento(props) {
       });
   }, []);
 
-  const [clienteSelecionado, setClienteSelecionado] = useState({});
-  const [ListaUsuarios, setListaUsuarios] = useState([]);
-
-  useEffect(() => {
-    fetch(urlBase2)
-      .then((resposta) => resposta.json())
-      .then((dados) => {
-        setListaUsuarios(dados);
-      });
-  }, []);
-
   return (
     <Pagina>
       <Alert
@@ -81,14 +70,6 @@ function TelaAgendamento(props) {
         />
       ) : (
         <div>
-          <BarraBusca
-            placeHolder={"Informe o Nome..."}
-            dados={ListaUsuarios}
-            campoChave={"cpf"}
-            campoBusca={"nome"}
-            funcaoSelecao={setClienteSelecionado}
-            valor={""}
-          />
           <FormAgendamento
             listaAgendamentos={agendamentos}
             setAgendamentos={setAgendamentos}
