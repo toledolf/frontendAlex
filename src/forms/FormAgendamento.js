@@ -128,6 +128,7 @@ function FormAgendamento(props) {
           <Form.Group className="mb-3">
             <Form.Label>Usuário:</Form.Label>
             <Form.Control
+              disabled
               type="text"
               placeholder="Será recuperado via Barra de Busca."
               value={agendamento.usuario}
