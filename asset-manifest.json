@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/frontendAlex/static/css/main.4e22989b.css",
+    "main.js": "/frontendAlex/static/js/main.6b7c14b3.js",
+    "index.html": "/frontendAlex/index.html",
+    "main.4e22989b.css.map": "/frontendAlex/static/css/main.4e22989b.css.map",
+    "main.6b7c14b3.js.map": "/frontendAlex/static/js/main.6b7c14b3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4e22989b.css",
+    "static/js/main.6b7c14b3.js"
+  ]
+}
