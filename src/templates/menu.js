@@ -23,6 +23,9 @@ export default function Menu(props) {
                 <NavDropdown.Item>Agendamentos</NavDropdown.Item>
               </LinkContainer>
               <NavDropdown.Divider />
+              <LinkContainer to="/FormUsuario">
+                <NavDropdown.Item>Usuários</NavDropdown.Item>
+              </LinkContainer>
             </NavDropdown>
           </Nav>
           <Nav>
