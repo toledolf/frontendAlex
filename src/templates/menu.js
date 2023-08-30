@@ -19,13 +19,14 @@ export default function Menu(props) {
               id="basic-nav-dropdown"
             >
               <NavDropdown.Divider />
-              <LinkContainer to="/FormTime">
+              <LinkContainer to="/FormAgendamento">
                 <NavDropdown.Item>Agendamentos</NavDropdown.Item>
               </LinkContainer>
               <NavDropdown.Divider />
               <LinkContainer to="/FormUsuario">
                 <NavDropdown.Item>Usuários</NavDropdown.Item>
               </LinkContainer>
+              <NavDropdown.Divider />
             </NavDropdown>
           </Nav>
           <Nav>

@@ -1,5 +1,5 @@
 import TelaAgendamento from "./telas/TelaAgendamento";
-import TelasCadastro from './telas/TelasCadastro'
+import TelasCadastro from "./telas/TelasCadastro";
 import TelaMenu from "./telas/TelaMenu";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Tela404 from "./telas/tela404";
@@ -10,7 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route
-            path="/FormTime"
+            path="/FormAgendamento"
             element={<TelaAgendamento />}
           />
           <Route

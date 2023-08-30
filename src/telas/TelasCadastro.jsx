@@ -28,22 +28,6 @@ export default function TelaCadastro(props) {
     setExibirTabela(false);
   }
 
-  // function excluir(usuario){
-
-  //     fetch(urlBase + '/usuarios',{
-  //         method: "DELETE",
-  //         headers: {
-  //             "Content-Type":"application/json"
-  //         },
-  //         body: JSON.stringify(usuario)
-  //     })
-  //     .then((resposta) =>{
-  //         window.location.reload()
-  //         return resposta.json()
-  //     })
-
-  // }
-
   function deletarUsuario(usuario) {
     fetch(urlBase2, {
       method: "DELETE",
