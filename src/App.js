@@ -10,16 +10,16 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route
+            path="/"
+            element={<TelaMenu />}
+          />
+          <Route
             path="/FormAgendamento"
             element={<TelaAgendamento />}
           />
           <Route
             path="/FormUsuario"
             element={<TelasCadastro />}
-          />
-          <Route
-            path="/"
-            element={<TelaMenu />}
           />
           <Route
             path="*"
@@ -30,5 +30,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
