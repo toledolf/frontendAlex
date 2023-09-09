@@ -16,26 +16,48 @@ function FormAgendamento(props) {
 
   function manipularEnvio(evento) {
     const form = evento.currentTarget;
+
     if (form.checkValidity()) {
+      const usuario = {
+        cpf: usuarioSelecionado.cpf,
+        nome: usuarioSelecionado.nome,
+      };
+
+      const dadosParaEnvio = {
+        campo: agendamento.campo,
+        data: agendamento.data,
+        horario: agendamento.horario,
+        usuario: usuario,
+      };
       if (!props.modoEdicao) {
         fetch(urlBase, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(agendamento),
-        }).then((resposta) => {
-          window.alert("Agendamento cadastrado com sucesso!!!");
-          window.location.reload();
-          return resposta.json();
-        });
+          body: JSON.stringify(dadosParaEnvio),
+        })
+          .then((resposta) => {
+            if (resposta.ok) {
+              window.alert("Agendamento cadastrado com sucesso!!!");
+              window.location.reload();
+              return resposta.json();
+            } else {
+              window.alert("Usuário não encontrado!!!");
+            }
+          })
+          .catch((error) => {
+            console.error(error);
+            window.alert(error.message);
+          });
       } else {
+        dadosParaEnvio.codigo = agendamento.codigo;
         fetch(urlBase, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(agendamento),
+          body: JSON.stringify(dadosParaEnvio),
         }).then((resp) => {
           window.alert("Agendamento Atualizado com Sucesso!!!");
           window.location.reload();
@@ -51,7 +73,7 @@ function FormAgendamento(props) {
     evento.stopPropagation();
   }
 
-  const [clienteSelecionado, setClienteSelecionado] = useState({});
+  const [usuarioSelecionado, setUsuarioSelecionado] = useState({});
   const [ListaUsuarios, setListaUsuarios] = useState([]);
 
   useEffect(() => {
@@ -80,7 +102,7 @@ function FormAgendamento(props) {
               dados={ListaUsuarios}
               campoChave={"cpf"}
               campoBusca={"nome"}
-              funcaoSelecao={setClienteSelecionado}
+              funcaoSelecao={setUsuarioSelecionado}
               valor={""}
             />
             <Form.Control.Feedback type="invalid">
@@ -92,12 +114,12 @@ function FormAgendamento(props) {
       <Row>
         <Col>
           <Form.Group className="mb-3">
-            <Form.Label>Id:</Form.Label>
+            <Form.Label>Código:</Form.Label>
             <Form.Control
               disabled
               type="number"
-              placeholder="O Id será gerado automaticamente."
-              value={agendamento.id}
+              placeholder="O código será gerado automaticamente."
+              value={agendamento.codigo}
             />
           </Form.Group>
         </Col>

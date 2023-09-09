@@ -1,9 +1,8 @@
 import FormAgendamento from "../forms/FormAgendamento";
-import BarraBusca from "../forms/BarraBusca";
 import Pagina from "../templates/pagina";
 import TabelaAgendamento from "../tabelas/TabelaAgendamento";
 import { useState, useEffect } from "react";
-import { urlBase, urlBase2 } from "../utilitarios/definicoes";
+import { urlBase } from "../utilitarios/definicoes";
 import { Alert } from "react-bootstrap";
 
 function TelaAgendamento(props) {
@@ -15,7 +14,6 @@ function TelaAgendamento(props) {
     campo: "",
     data: "",
     horario: "",
-    usuario: "",
   });
 
   function prepararParaEdicao(agendamento) {

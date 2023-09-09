@@ -40,23 +40,23 @@ function TabelaAgendamento(props) {
       <Table striped bordered hover variant="dark">
         <thead>
           <tr>
-            <th>id</th>
+            <th>Código</th>
             <th>Campo</th>
             <th>Data</th>
             <th>Horario</th>
-            <th>Usuário</th>
+            <th>Usuário CPF</th>
             <th>Ações</th>
           </tr>
         </thead>
         <tbody>
           {
             props.listaAgendamentos?.map((agendamento) => {
-              return <tr key={agendamento.id}>
-                <td>{agendamento.id}</td>
+              return <tr key={agendamento.codigo}>
+                <td>{agendamento.codigo}</td>
                 <td>{agendamento.campo}</td>
                 <td>{agendamento.data}</td>
                 <td>{agendamento.horario}</td>
-                <td>{agendamento.usuario}</td>
+                <td>{agendamento.cpfUsuario}</td>
                 <td>
                   <Button onClick={() => {
                     props.editarAgendamento(agendamento)
