@@ -10,7 +10,7 @@ function TelaAgendamento(props) {
   const [agendamentos, setAgendamentos] = useState([]);
   const [modoEdicao, setModoEdicao] = useState(false);
   const [agendamentoEmEdicao, setAgendamentoEmEdicao] = useState({
-    id: "",
+    codigo: "",
     campo: "",
     data: "",
     horario: "",

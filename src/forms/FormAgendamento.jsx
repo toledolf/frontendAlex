@@ -9,9 +9,9 @@ function FormAgendamento(props) {
 
   function manipularInput(e) {
     const elementoForm = e.currentTarget;
-    const id = elementoForm.id;
+    const codigo = elementoForm.codigo;
     const valor = elementoForm.value;
-    setAgendamento({ ...agendamento, [id]: valor });
+    setAgendamento({ ...agendamento, [codigo]: valor });
   }
 
   function manipularEnvio(evento) {
