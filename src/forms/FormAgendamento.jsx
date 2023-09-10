@@ -116,6 +116,7 @@ function FormAgendamento(props) {
           <Form.Group className="mb-3">
             <Form.Label>Código:</Form.Label>
             <Form.Control
+              id="codigo"
               disabled
               type="number"
               placeholder="O código será gerado automaticamente."
