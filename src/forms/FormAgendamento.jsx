@@ -9,9 +9,9 @@ function FormAgendamento(props) {
 
   function manipularInput(e) {
     const elementoForm = e.currentTarget;
-    const codigo = elementoForm.codigo;
+    const id = elementoForm.id;
     const valor = elementoForm.value;
-    setAgendamento({ ...agendamento, [codigo]: valor });
+    setAgendamento({ ...agendamento, [id]: valor });
   }
 
   function manipularEnvio(evento) {
@@ -116,11 +116,11 @@ function FormAgendamento(props) {
           <Form.Group className="mb-3">
             <Form.Label>Código:</Form.Label>
             <Form.Control
-              id="codigo"
               disabled
               type="number"
               placeholder="O código será gerado automaticamente."
               value={agendamento.codigo}
+              id="codigo"
             />
           </Form.Group>
         </Col>
