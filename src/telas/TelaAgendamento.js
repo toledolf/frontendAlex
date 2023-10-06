@@ -10,10 +10,11 @@ function TelaAgendamento(props) {
   const [agendamentos, setAgendamentos] = useState([]);
   const [modoEdicao, setModoEdicao] = useState(false);
   const [agendamentoEmEdicao, setAgendamentoEmEdicao] = useState({
-    codigo: "",
-    campo: "",
+    id: "",
     data: "",
     horario: "",
+    cpfUsuario: "",
+    listaCampos: [],
   });
 
   function prepararParaEdicao(agendamento) {
@@ -22,11 +23,19 @@ function TelaAgendamento(props) {
     setMostraTabela(false);
   }
 
-  function apagarAgendamento(agendamento) {
+  function apagarAgendamento(idAgendamento) {
+    const dadosDeletar = {
+      agendamento_campo: {
+        idAgendamento: idAgendamento,
+      },
+      agendamento: {
+        id: idAgendamento,
+      },
+    };
     fetch(urlBase, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(agendamento),
+      body: JSON.stringify(dadosDeletar),
     }).then((resposta) => {
       window.alert("Agendamento Deletado com sucesso!!!");
       window.location.reload();

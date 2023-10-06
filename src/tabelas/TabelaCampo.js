@@ -1,20 +1,17 @@
 import { Container, Table, Button, Row, Col, FormControl } from "react-bootstrap";
-import { urlBase } from "../utilitarios/definicoes";
+import { urlBase3 } from "../utilitarios/definicoes";
 
-function TabelaAgendamento(props) {
-  function filtrar(id) {
-    const termoBusca = id.currentTarget.value.toLowerCase();
-
-    fetch(urlBase, { method: "GET" })
+function TabelaCampo(props) {
+  function filtrar(e) {
+    const termoBusca = e.currentTarget.value.toLowerCase();
+    fetch(urlBase3, { method: "GET" })
       .then((resposta) => resposta.json())
-      .then((listaAgendamentos) => {
-        if (Array.isArray(listaAgendamentos)) {
-          const resultadoBusca = listaAgendamentos.filter(
-            (agendamento) => agendamento.id.toLowerCase() === id.currentTarget.value
+      .then((listaCampos) => {
+        if (Array.isArray(listaCampos)) {
+          const resultadoBusca = listaCampos.filter((campo) =>
+            campo.corReferencial.toLowerCase().includes(termoBusca)
           );
-          if (resultadoBusca.length > 0) {
-            props.setAgendamentos(resultadoBusca);
-          }
+          props.setCampos(resultadoBusca);
         }
       });
   }
@@ -25,10 +22,10 @@ function TabelaAgendamento(props) {
         <Row>
           <Col>
             <FormControl
-              type="number"
+              type="text"
               id="termoBusca"
               onChange={filtrar}
-              placeholder="Digite o ID para filtrar..."
+              placeholder="Digite a cor do CAMPO..."
             />
           </Col>
           <Col></Col>
@@ -43,33 +40,22 @@ function TabelaAgendamento(props) {
         <thead>
           <tr>
             <th>Id</th>
-            <th>Data do Agendamento</th>
-            <th>Horário</th>
-            <th>CPF do Usuário</th>
-            <th>Lista de Campos</th>
-            <th>Editar | Excluir Agend.</th>
+            <th>Cor de Referência</th>
+            <th>Situação</th>
+            <th>Editar | Excluir Campo</th>
           </tr>
         </thead>
         <tbody>
-          {props.listaAgendamentos?.map((agendamento) => {
+          {props.listaCampos?.map((campo) => {
             return (
-              <tr key={agendamento.id}>
-                <td>{agendamento.id}</td>
-                <td>{agendamento.data}</td>
-                <td>{agendamento.horario}</td>
-                <td>{agendamento.cpfUsuario.cpf}</td>
-                <td>
-                  {agendamento.listaCampos.map((campo, index) =>
-                    index === agendamento.listaCampos.length - 1
-                      ? campo.id
-                      : campo.id + " / "
-                  )}
-                </td>
-
+              <tr key={campo.id}>
+                <td>{campo.id}</td>
+                <td>{campo.corReferencial}</td>
+                <td>{campo.descricao}</td>
                 <td>
                   <Button
                     onClick={() => {
-                      props.editarAgendamento(agendamento);
+                      props.editarCampo(campo);
                     }}
                   >
                     <svg
@@ -85,8 +71,8 @@ function TabelaAgendamento(props) {
                   </Button>{" "}
                   <Button
                     onClick={() => {
-                      if (window.confirm("Deseja realmente deletar esse agendamento?"))
-                        props.deletarAgendamento(agendamento.id);
+                      if (window.confirm("Deseja realmente deletar esse campo?"))
+                        props.deletarCampo(campo);
                     }}
                   >
                     <svg
@@ -112,10 +98,10 @@ function TabelaAgendamento(props) {
           props.mostraTabela(false);
         }}
       >
-        Agendamentos
+        Cadastrar Campo
       </Button>
     </Container>
   );
 }
 
-export default TabelaAgendamento;
+export default TabelaCampo;
